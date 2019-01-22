@@ -178,7 +178,7 @@ abstract class CRM_Core_Payment_PaymentExtended extends CRM_Core_Payment {
   protected function getNotifyUrl($allowLocalHost = FALSE) {
     if (omnipaymultiprocessor__versionAtLeast(4.6)) {
       $url = CRM_Utils_System::url(
-        'civicrm/payment/ipn/' . $this->_paymentProcessor['id'],
+        'civicrm/payment/ipn/' . $this->transaction_id . '/' . $this->_paymentProcessor['id'],
         array(),
         TRUE
       );
