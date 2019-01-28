@@ -245,6 +245,15 @@ abstract class CRM_Core_Payment_PaymentExtended extends CRM_Core_Payment {
    * @return string
    */
   protected function getPaymentDescription($params, $length = 24) {
+    // Custom code.
+    $description = 'Order ' . $params['contributionID'];
+    if (!empty($params['contactID'])) {
+      $description .= ' - ' . $params['contactID'];
+    }
+    $description .= ' - SPNET - ' . $params['contributionType_name'];
+    return $description;
+    // End custom code.
+
     $parts = array('contactID', 'contributionID', 'description', 'billing_first_name', 'billing_last_name');
     $validParts = array();
     if (isset($params['description'])) {
